@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const inter = Geist({
+  variable: '--font-inter',
   subsets: ['latin'],
 });
 
@@ -37,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} suppressHydrationWarning={true}>
+      <body className={`${inter.variable} ${geistMono.variable} font-sans antialiased`} suppressHydrationWarning={true}>
         <a className="sr-only focus:not-sr-only" href="#main">
           Skip to content
         </a>

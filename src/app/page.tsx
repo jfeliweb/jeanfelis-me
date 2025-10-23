@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { urlFor } from '../sanity/image';
 import { getHeroBundle, getExperience, getProjects, getPosts } from '../sanity/fetchers';
 import ScrollReveal from '../components/ScrollReveal';
+import BlurText from '../components/BlurText';
 
 export const revalidate = 60;
 
@@ -13,7 +14,7 @@ export default async function HomePage() {
     getPosts(),
   ]);
 
-  const heroName = person?.name ?? 'Jean Felis';
+  const heroName = person?.name ?? 'Jean Felisme';
   const heroTagline = settings?.tagline ?? 'Software Developer';
   const heroIntro = settings?.intro ?? '';
   const heroImage = person?.image;
@@ -23,9 +24,13 @@ export default async function HomePage() {
       {/* Hero */}
       <header aria-labelledby="hero-title" className="grid md:grid-cols-2 gap-8 items-center mb-16 md:mb-24 lg:mb-32">
         <div className="space-y-4">
-          <h1 id="hero-title" className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-black">
-            {heroName}
-          </h1>
+          <BlurText
+            text={heroName}
+            delay={150}
+            animateBy="words"
+            direction="top"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-black"
+          />
           <p className="text-lg text-gray-600 leading-relaxed">{heroTagline}</p>
           {heroIntro && <p className="text-base text-gray-600 leading-relaxed max-w-2xl">{heroIntro}</p>}
         </div>

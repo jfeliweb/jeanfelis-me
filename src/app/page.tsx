@@ -1,65 +1,152 @@
-import Image from "next/image";
+import Image from 'next/image';
+import { urlFor } from '../sanity/image';
+import { getHeroBundle, getExperience, getProjects, getPosts } from '../sanity/fetchers';
 
-export default function Home() {
+export const revalidate = 60;
+
+export default async function HomePage() {
+  const [{ settings, person }, experience, projects, posts] = await Promise.all([
+    getHeroBundle(),
+    getExperience(),
+    getProjects(),
+    getPosts(),
+  ]);
+
+  const heroName = person?.name ?? 'Jean Felis';
+  const heroTagline = settings?.tagline ?? 'Software Developer';
+  const heroIntro = settings?.intro ?? '';
+  const heroImage = person?.image;
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <main id="main" className="mx-auto max-w-5xl px-4 py-12">
+      {/* Hero */}
+      <header aria-labelledby="hero-title" className="mb-16">
+        <h1 id="hero-title" className="text-3xl sm:text-5xl font-bold tracking-tight">
+          {heroName}
+        </h1>
+        <p className="mt-2 text-lg text-gray-700">{heroTagline}</p>
+        {heroIntro && <p className="mt-4 max-w-2xl">{heroIntro}</p>}
+        {heroImage && (
+          <div className="mt-6">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src={urlFor(heroImage).width(320).height(320).url()}
+              alt={`${heroName} portrait`}
+              width={320}
+              height={320}
+              className="rounded-full"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+        )}
+        {person?.links?.length ? (
+          <nav aria-label="Social links" className="mt-6 flex gap-4">
+            {person.links.map((l: any) => (
+              <a
+                key={l.href}
+                className="underline focus:outline-none focus:ring-2"
+                href={l.href}
+              >
+                {l.label}
+              </a>
+            ))}
+          </nav>
+        ) : null}
+      </header>
+
+      {/* Experience */}
+      <section aria-labelledby="experience-title" id="experience" className="mb-16">
+        <h2 id="experience-title" className="text-2xl font-semibold mb-6">
+          Experience
+        </h2>
+        <ul className="space-y-6">
+          {experience?.map((e: any) => (
+            <li key={e._id}>
+              <h3 className="text-lg font-semibold">
+                {e.role} · {e.company}
+              </h3>
+              <p className="text-sm text-gray-600">
+                {new Date(e.start).toLocaleDateString()} —{' '}
+                {e.current
+                  ? 'Present'
+                  : e.end
+                    ? new Date(e.end).toLocaleDateString()
+                    : '—'}
+              </p>
+              {e.highlights?.length ? (
+                <ul className="list-disc pl-6 mt-2">
+                  {e.highlights.map((h: string, idx: number) => (
+                    <li key={idx}>{h}</li>
+                  ))}
+                </ul>
+              ) : null}
+              {e.tech?.length ? (
+                <p className="mt-1 text-sm">Tech: {e.tech.join(', ')}</p>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Projects */}
+      <section aria-labelledby="projects-title" id="projects" className="mb-16">
+        <h2 id="projects-title" className="text-2xl font-semibold mb-6">
+          Projects
+        </h2>
+        <div className="grid sm:grid-cols-2 gap-6">
+          {projects?.map((p: any) => (
+            <article key={p._id} className="rounded-xl border p-4">
+              <h3 className="text-lg font-semibold">{p.title}</h3>
+              {p.image && (
+                <Image
+                  src={urlFor(p.image).width(800).height(450).url()}
+                  alt={`${p.title} cover`}
+                  width={800}
+                  height={450}
+                  className="mt-2 rounded-lg"
+                />
+              )}
+              {p.summary && <p className="mt-2 text-sm">{p.summary}</p>}
+              <div className="mt-3 flex gap-4">
+                {p.url && (
+                  <a className="underline" href={p.url}>
+                    Live
+                  </a>
+                )}
+                {p.repo && (
+                  <a className="underline" href={p.repo}>
+                    Code
+                  </a>
+                )}
+              </div>
+            </article>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Blog (uses Post type) */}
+      <section aria-labelledby="blog-title" id="blog">
+        <h2 id="blog-title" className="text-2xl font-semibold mb-6">
+          Blog
+        </h2>
+        <ul className="space-y-4">
+          {posts?.map((post: any) => (
+            <li key={post._id}>
+              <h3 className="text-lg font-semibold">{post.title}</h3>
+              <p className="text-sm text-gray-600">
+                {post.publishedAt
+                  ? new Date(post.publishedAt).toLocaleDateString()
+                  : ''}
+              </p>
+              {post.excerpt && <p className="mt-1">{post.excerpt}</p>}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <footer className="mt-16 pt-8 border-t">
+        <p className="text-sm text-gray-600">
+          © {new Date().getFullYear()} Jean Felis
+        </p>
+      </footer>
+    </main>
   );
 }

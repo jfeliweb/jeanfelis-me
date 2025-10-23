@@ -1,0 +1,316 @@
+{
+  "designSystem": {
+    "name": "Minimalist Portfolio Design System",
+    "version": "1.0.0",
+    "description": "A clean, modern portfolio design system featuring minimal aesthetics, strong typography, and card-based layouts",
+    
+    "colorPalette": {
+      "primary": {
+        "background": "#FFFFFF",
+        "surface": "#F5F5F5",
+        "text": "#000000",
+        "textSecondary": "#666666",
+        "accent": "#FF4444"
+      },
+      "tailwindClasses": {
+        "background": "bg-white",
+        "surface": "bg-gray-50",
+        "text": "text-black",
+        "textSecondary": "text-gray-600",
+        "accent": "bg-red-500"
+      }
+    },
+    
+    "typography": {
+      "fontFamily": {
+        "primary": "Inter, system-ui, sans-serif",
+        "tailwind": "font-sans"
+      },
+      "scale": {
+        "hero": {
+          "size": "text-4xl md:text-5xl lg:text-6xl",
+          "weight": "font-bold",
+          "lineHeight": "leading-tight"
+        },
+        "h1": {
+          "size": "text-3xl md:text-4xl",
+          "weight": "font-bold",
+          "lineHeight": "leading-tight"
+        },
+        "h2": {
+          "size": "text-2xl md:text-3xl",
+          "weight": "font-bold",
+          "lineHeight": "leading-snug"
+        },
+        "h3": {
+          "size": "text-xl md:text-2xl",
+          "weight": "font-semibold",
+          "lineHeight": "leading-snug"
+        },
+        "body": {
+          "size": "text-base",
+          "weight": "font-normal",
+          "lineHeight": "leading-relaxed"
+        },
+        "small": {
+          "size": "text-sm",
+          "weight": "font-normal",
+          "lineHeight": "leading-normal"
+        },
+        "meta": {
+          "size": "text-xs",
+          "weight": "font-medium",
+          "lineHeight": "leading-none",
+          "transform": "uppercase",
+          "color": "text-gray-500"
+        }
+      }
+    },
+    
+    "spacing": {
+      "sections": {
+        "vertical": "py-16 md:py-24 lg:py-32",
+        "horizontal": "px-6 md:px-12 lg:px-16"
+      },
+      "containers": {
+        "maxWidth": "max-w-6xl",
+        "centered": "mx-auto"
+      },
+      "cards": {
+        "padding": "p-6 md:p-8",
+        "gap": "space-y-4"
+      },
+      "lists": {
+        "gap": "space-y-6 md:space-y-8"
+      }
+    },
+    
+    "components": {
+      "header": {
+        "structure": "Fixed navigation bar at top",
+        "layout": "flex items-center justify-between",
+        "height": "h-16 md:h-20",
+        "background": "bg-white border-b border-gray-100",
+        "elements": [
+          {
+            "type": "logo",
+            "position": "left",
+            "style": "text-lg md:text-xl font-bold"
+          },
+          {
+            "type": "navigation",
+            "position": "right",
+            "style": "flex gap-6 md:gap-8 text-sm md:text-base",
+            "links": ["Work", "Blog", "About", "Contact"]
+          }
+        ]
+      },
+      
+      "hero": {
+        "structure": "Large introductory section with name and title",
+        "layout": "grid md:grid-cols-2 gap-8 items-center",
+        "elements": [
+          {
+            "type": "text-content",
+            "order": 1,
+            "className": "space-y-4"
+          },
+          {
+            "type": "profile-image",
+            "order": 2,
+            "shape": "rounded-full",
+            "size": "w-32 h-32 md:w-48 md:h-48",
+            "border": "ring-4 ring-gray-100"
+          }
+        ],
+        "cta": {
+          "type": "button",
+          "style": "bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-colors",
+          "text": "Action text"
+        }
+      },
+      
+      "card": {
+        "variants": {
+          "default": {
+            "className": "bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow",
+            "structure": [
+              {
+                "element": "image-container",
+                "className": "aspect-video bg-gray-100 overflow-hidden"
+              },
+              {
+                "element": "content",
+                "className": "p-6 space-y-3"
+              }
+            ]
+          },
+          "featured": {
+            "className": "bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow",
+            "structure": "Same as default with larger border radius"
+          },
+          "compact": {
+            "className": "bg-white rounded-lg p-4 hover:bg-gray-50 transition-colors",
+            "structure": "Horizontal layout with smaller image"
+          }
+        }
+      },
+      
+      "badge": {
+        "style": "inline-flex items-center px-3 py-1 rounded-full text-xs font-medium",
+        "variants": {
+          "default": "bg-gray-900 text-white",
+          "accent": "bg-red-500 text-white",
+          "outline": "border border-gray-300 text-gray-700"
+        }
+      },
+      
+      "blogPost": {
+        "structure": "Card-based list item",
+        "elements": [
+          {
+            "type": "title",
+            "className": "text-xl font-semibold hover:text-red-500 transition-colors"
+          },
+          {
+            "type": "meta",
+            "className": "flex items-center gap-4 text-sm text-gray-500",
+            "includes": ["date", "category", "read-time"]
+          },
+          {
+            "type": "excerpt",
+            "className": "text-gray-600 leading-relaxed"
+          }
+        ]
+      },
+      
+      "workItem": {
+        "layout": "Grid or list of project cards",
+        "card": {
+          "imageRatio": "aspect-video or aspect-[4/3]",
+          "imageStyle": "object-cover w-full h-full",
+          "overlay": "hover:opacity-90 transition-opacity",
+          "content": [
+            {
+              "type": "title",
+              "className": "text-xl md:text-2xl font-bold"
+            },
+            {
+              "type": "badge",
+              "position": "top-right or inline"
+            },
+            {
+              "type": "description",
+              "className": "text-gray-600 line-clamp-2"
+            }
+          ]
+        }
+      },
+      
+      "socialLinks": {
+        "layout": "flex items-center gap-4",
+        "iconSize": "w-5 h-5",
+        "style": "text-gray-700 hover:text-red-500 transition-colors",
+        "platforms": ["Facebook", "Instagram", "Twitter", "YouTube", "LinkedIn"]
+      },
+      
+      "footer": {
+        "layout": "flex flex-col items-center gap-4 py-8 border-t border-gray-100",
+        "elements": [
+          {
+            "type": "social-links",
+            "position": "center"
+          },
+          {
+            "type": "copyright",
+            "className": "text-sm text-gray-500"
+          }
+        ]
+      }
+    },
+    
+    "layouts": {
+      "homepage": {
+        "sections": [
+          "Header",
+          "Hero with profile",
+          "Featured work grid (2-3 items)",
+          "Social links",
+          "Footer"
+        ]
+      },
+      "blogList": {
+        "sections": [
+          "Header",
+          "Page title",
+          "List of blog posts (vertical stack)",
+          "Social links",
+          "Footer"
+        ]
+      },
+      "workPortfolio": {
+        "sections": [
+          "Header",
+          "Page title",
+          "Project grid (2 columns on desktop)",
+          "Social links",
+          "Footer"
+        ]
+      },
+      "blogPost": {
+        "sections": [
+          "Header",
+          "Article title and meta",
+          "Featured image (full-width)",
+          "Article content with proper typography hierarchy",
+          "Navigation to related posts",
+          "Footer"
+        ]
+      }
+    },
+    
+    "gridSystem": {
+      "blog": "grid grid-cols-1 gap-8 md:gap-12",
+      "work": "grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8",
+      "featured": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+    },
+    
+    "animations": {
+      "hover": {
+        "cards": "hover:shadow-lg hover:-translate-y-1 transition-all duration-300",
+        "links": "hover:text-red-500 transition-colors duration-200",
+        "buttons": "hover:scale-105 transition-transform duration-200"
+      },
+      "loading": {
+        "fadeIn": "animate-fade-in",
+        "slideUp": "animate-slide-up"
+      }
+    },
+    
+    "designPrinciples": {
+      "whitespace": "Generous use of whitespace for breathing room",
+      "hierarchy": "Clear visual hierarchy through size, weight, and color",
+      "consistency": "Consistent spacing, rounded corners (8px-16px), and transitions",
+      "simplicity": "Minimal color palette with accent color for CTAs and highlights",
+      "responsiveness": "Mobile-first approach with progressive enhancement",
+      "accessibility": "High contrast ratios, semantic HTML, focus states",
+      "imagery": "Full-width or aspect-ratio constrained images with subtle overlays"
+    },
+    
+    "interactionPatterns": {
+      "navigation": "Simple top bar with text links, no hamburger menu visible in screenshots",
+      "cardInteraction": "Hover states with shadow elevation and slight transform",
+      "cta": "High-contrast buttons with clear hover states",
+      "links": "Underline on hover or color change",
+      "scrolling": "Smooth vertical scroll with proper section spacing"
+    },
+    
+    "contentGuidelines": {
+      "headlines": "Keep concise, 3-8 words maximum",
+      "descriptions": "2-3 lines of supporting text per card",
+      "metadata": "Include date, category, and read time for blog posts",
+      "projectInfo": "Title, badge/tag, and brief description",
+      "excerpts": "Line clamp at 2-3 lines for consistency"
+    }
+  }
+}

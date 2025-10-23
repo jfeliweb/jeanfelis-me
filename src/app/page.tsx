@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { urlFor } from '../sanity/image';
 import { getHeroBundle, getExperience, getProjects, getPosts } from '../sanity/fetchers';
+import ScrollReveal from '../components/ScrollReveal';
 
 export const revalidate = 60;
 
@@ -56,9 +57,15 @@ export default async function HomePage() {
 
       {/* Experience */}
       <section aria-labelledby="experience-title" id="experience" className="mb-16 md:mb-24 lg:mb-32">
-        <h2 id="experience-title" className="text-2xl md:text-3xl font-bold leading-snug text-black mb-8">
+        <ScrollReveal
+          baseOpacity={0}
+          enableBlur={true}
+          baseRotation={5}
+          blurStrength={10}
+          containerClassName="mb-8"
+        >
           Experience
-        </h2>
+        </ScrollReveal>
         <ul className="space-y-6 md:space-y-8">
           {experience?.map((e: any) => (
             <li key={e._id} className="bg-white rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
@@ -94,9 +101,15 @@ export default async function HomePage() {
 
       {/* Projects */}
       <section aria-labelledby="projects-title" id="projects" className="mb-16 md:mb-24 lg:mb-32">
-        <h2 id="projects-title" className="text-2xl md:text-3xl font-bold leading-snug text-black mb-8">
-          Projects
-        </h2>
+        <ScrollReveal
+          baseOpacity={0}
+          enableBlur={true}
+          baseRotation={5}
+          blurStrength={10}
+          containerClassName="mb-8"
+        >
+          Featured Projects
+        </ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {projects?.map((p: any) => (
             <article key={p._id} className="bg-white rounded-lg overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
@@ -134,9 +147,15 @@ export default async function HomePage() {
 
       {/* Blog (uses Post type) */}
       <section aria-labelledby="blog-title" id="blog" className="mb-16 md:mb-24 lg:mb-32">
-        <h2 id="blog-title" className="text-2xl md:text-3xl font-bold leading-snug text-black mb-8">
+        <ScrollReveal
+          baseOpacity={0}
+          enableBlur={true}
+          baseRotation={5}
+          blurStrength={10}
+          containerClassName="mb-8"
+        >
           Blog
-        </h2>
+        </ScrollReveal>
         <ul className="space-y-6 md:space-y-8">
           {posts?.map((post: any) => (
             <li key={post._id} className="bg-white rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
@@ -158,7 +177,7 @@ export default async function HomePage() {
 
       <footer className="flex flex-col items-center gap-4 py-8 border-t border-gray-100 mt-16 md:mt-24 lg:mt-32">
         <p className="text-sm text-gray-500">
-          © {new Date().getFullYear()} Jean Felis
+          © {new Date().getFullYear()} Jean Felisme
         </p>
       </footer>
     </main>

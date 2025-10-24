@@ -355,7 +355,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       className={`sm-scope z-40 ${isFixed ? 'fixed top-0 left-0 w-screen h-screen overflow-hidden' : 'w-full h-full'} ${open ? 'pointer-events-auto' : 'pointer-events-none'}`}
     >
       <div
-        className={(className ? className + ' ' : '') + 'staggered-menu-wrapper relative w-full h-full pointer-events-none'}
+        className={(className ? className + ' ' : '') + `staggered-menu-wrapper relative w-full h-full ${open ? 'pointer-events-auto' : 'pointer-events-none'}`}
         style={accentColor ? { ['--sm-accent' as any]: accentColor } : undefined}
         data-position={position}
         data-open={open || undefined}
@@ -363,7 +363,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         {/* Click-away overlay - covers entire screen when menu is open */}
         {open && (
           <div
-            className="sm-click-away absolute top-0 left-0 w-full h-full z-[15] pointer-events-auto cursor-pointer"
+            className="sm-click-away absolute top-0 left-0 w-full h-full z-[10] pointer-events-auto cursor-pointer"
             onClick={handleClickAway}
             aria-hidden="true"
           />
@@ -392,7 +392,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         </div>
 
         <header
-          className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] bg-transparent pointer-events-none z-20"
+          className="staggered-menu-header absolute top-0 left-0 w-full flex items-center justify-between p-[2em] bg-transparent pointer-events-none z-[25]"
           aria-label="Main navigation header"
         >
           <div className="sm-logo flex items-center select-none pointer-events-auto" aria-label="Logo">
@@ -453,7 +453,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         <aside
           id="staggered-menu-panel"
           ref={panelRef}
-          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-20 backdrop-blur-[12px] pointer-events-auto"
+          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-y-auto z-[25] backdrop-blur-[12px] pointer-events-auto"
           style={{ WebkitBackdropFilter: 'blur(12px)' }}
           aria-hidden={!open}
         >

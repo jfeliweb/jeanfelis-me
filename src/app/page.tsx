@@ -20,12 +20,12 @@ export default async function HomePage() {
   const heroIntro = settings?.intro ?? '';
   const heroImage = person?.image;
 
-  // Menu configuration
+  // Menu configuration - conditionally include items based on data availability
   const menuItems: Array<{ label: string; ariaLabel: string; link: string }> = [
     { label: 'Home', ariaLabel: 'Go to top of page', link: '#main' },
-    { label: 'Experience', ariaLabel: 'View work experience', link: '#experience' },
-    { label: 'Projects', ariaLabel: 'View featured projects', link: '#projects' },
-    { label: 'Blog', ariaLabel: 'Read blog posts', link: '#blog' }
+    ...(experience?.length > 0 ? [{ label: 'Experience', ariaLabel: 'View work experience', link: '#experience' }] : []),
+    ...(projects?.length > 0 ? [{ label: 'Projects', ariaLabel: 'View featured projects', link: '#projects' }] : []),
+    ...(posts?.length > 0 ? [{ label: 'Blog', ariaLabel: 'Read blog posts', link: '#blog' }] : [])
   ];
 
   // Social links from Sanity data
@@ -78,124 +78,130 @@ export default async function HomePage() {
       </header>
 
       {/* Experience */}
-      <section aria-labelledby="experience-title" id="experience" className="mb-16 md:mb-24 lg:mb-32">
-        <ScrollReveal
-          baseOpacity={0}
-          enableBlur={true}
-          baseRotation={5}
-          blurStrength={10}
-          containerClassName="mb-8"
-        >
-          Experience
-        </ScrollReveal>
-        <ul className="space-y-6 md:space-y-8">
-          {experience?.map((e: any) => (
-            <li key={e._id} className="bg-white rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3 className="text-xl md:text-2xl font-bold leading-snug text-black">
-                {e.role} · {e.company}
-              </h3>
-              <p className="text-sm text-gray-500 font-medium uppercase leading-none mt-2">
-                {new Date(e.start).toLocaleDateString()} —{' '}
-                {e.current
-                  ? 'Present'
-                  : e.end
-                    ? new Date(e.end).toLocaleDateString()
-                    : '—'}
-              </p>
-              {e.highlights?.length ? (
-                <ul className="list-disc pl-6 mt-4 space-y-2">
-                  {e.highlights.map((h: string, idx: number) => (
-                    <li key={idx} className="text-base text-gray-600 leading-relaxed">{h}</li>
-                  ))}
-                </ul>
-              ) : null}
-              {e.tech?.length ? (
-                <div className="mt-4">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-900 text-white">
-                    {e.tech.join(', ')}
-                  </span>
-                </div>
-              ) : null}
-            </li>
-          ))}
-        </ul>
-      </section>
+      {experience?.length > 0 && (
+        <section aria-labelledby="experience-title" id="experience" className="mb-16 md:mb-24 lg:mb-32">
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={true}
+            baseRotation={5}
+            blurStrength={10}
+            containerClassName="mb-8"
+          >
+            Experience
+          </ScrollReveal>
+          <ul className="space-y-6 md:space-y-8">
+            {experience?.map((e: any) => (
+              <li key={e._id} className="bg-white rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
+                <h3 className="text-xl md:text-2xl font-bold leading-snug text-black">
+                  {e.role} · {e.company}
+                </h3>
+                <p className="text-sm text-gray-500 font-medium uppercase leading-none mt-2">
+                  {new Date(e.start).toLocaleDateString()} —{' '}
+                  {e.current
+                    ? 'Present'
+                    : e.end
+                      ? new Date(e.end).toLocaleDateString()
+                      : '—'}
+                </p>
+                {e.highlights?.length ? (
+                  <ul className="list-disc pl-6 mt-4 space-y-2">
+                    {e.highlights.map((h: string, idx: number) => (
+                      <li key={idx} className="text-base text-gray-600 leading-relaxed">{h}</li>
+                    ))}
+                  </ul>
+                ) : null}
+                {e.tech?.length ? (
+                  <div className="mt-4">
+                    <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-900 text-white">
+                      {e.tech.join(', ')}
+                    </span>
+                  </div>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* Projects */}
-      <section aria-labelledby="projects-title" id="projects" className="mb-16 md:mb-24 lg:mb-32">
-        <ScrollReveal
-          baseOpacity={0}
-          enableBlur={true}
-          baseRotation={5}
-          blurStrength={10}
-          containerClassName="mb-8"
-        >
-          Featured Projects
-        </ScrollReveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          {projects?.map((p: any) => (
-            <article key={p._id} className="bg-white rounded-lg overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-              <div className="aspect-video bg-gray-100 overflow-hidden">
-                {p.image && (
-                  <Image
-                    src={urlFor(p.image).width(800).height(450).url()}
-                    alt={`${p.title} cover`}
-                    width={800}
-                    height={450}
-                    className="object-cover w-full h-full hover:opacity-90 transition-opacity"
-                  />
-                )}
-              </div>
-              <div className="p-6 space-y-3">
-                <h3 className="text-xl md:text-2xl font-bold text-black">{p.title}</h3>
-                {p.summary && <p className="text-gray-600 leading-relaxed line-clamp-2">{p.summary}</p>}
-                <div className="flex gap-4">
-                  {p.url && (
-                    <a className="text-gray-700 hover:text-red-500 transition-colors duration-200 underline" href={p.url}>
-                      Live
-                    </a>
-                  )}
-                  {p.repo && (
-                    <a className="text-gray-700 hover:text-red-500 transition-colors duration-200 underline" href={p.repo}>
-                      Code
-                    </a>
+      {projects?.length > 0 && (
+        <section aria-labelledby="projects-title" id="projects" className="mb-16 md:mb-24 lg:mb-32">
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={true}
+            baseRotation={5}
+            blurStrength={10}
+            containerClassName="mb-8"
+          >
+            Featured Projects
+          </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            {projects?.map((p: any) => (
+              <article key={p._id} className="bg-white rounded-lg overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+                <div className="aspect-video bg-gray-100 overflow-hidden">
+                  {p.image && (
+                    <Image
+                      src={urlFor(p.image).width(800).height(450).url()}
+                      alt={`${p.title} cover`}
+                      width={800}
+                      height={450}
+                      className="object-cover w-full h-full hover:opacity-90 transition-opacity"
+                    />
                   )}
                 </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+                <div className="p-6 space-y-3">
+                  <h3 className="text-xl md:text-2xl font-bold text-black">{p.title}</h3>
+                  {p.summary && <p className="text-gray-600 leading-relaxed line-clamp-2">{p.summary}</p>}
+                  <div className="flex gap-4">
+                    {p.url && (
+                      <a className="text-gray-700 hover:text-red-500 transition-colors duration-200 underline" href={p.url}>
+                        Live
+                      </a>
+                    )}
+                    {p.repo && (
+                      <a className="text-gray-700 hover:text-red-500 transition-colors duration-200 underline" href={p.repo}>
+                        Code
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Blog (uses Post type) */}
-      <section aria-labelledby="blog-title" id="blog" className="mb-16 md:mb-24 lg:mb-32">
-        <ScrollReveal
-          baseOpacity={0}
-          enableBlur={true}
-          baseRotation={5}
-          blurStrength={10}
-          containerClassName="mb-8"
-        >
-          Blog
-        </ScrollReveal>
-        <ul className="space-y-6 md:space-y-8">
-          {posts?.map((post: any) => (
-            <li key={post._id} className="bg-white rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
-              <h3 className="text-xl font-semibold hover:text-red-500 transition-colors duration-200 text-black">
-                {post.title}
-              </h3>
-              <div className="flex items-center gap-4 text-sm text-gray-500 mt-2">
-                <span className="font-medium uppercase leading-none">
-                  {post.publishedAt
-                    ? new Date(post.publishedAt).toLocaleDateString()
-                    : ''}
-                </span>
-              </div>
-              {post.excerpt && <p className="mt-3 text-gray-600 leading-relaxed">{post.excerpt}</p>}
-            </li>
-          ))}
-        </ul>
-      </section>
+      {posts?.length > 0 && (
+        <section aria-labelledby="blog-title" id="blog" className="mb-16 md:mb-24 lg:mb-32">
+          <ScrollReveal
+            baseOpacity={0}
+            enableBlur={true}
+            baseRotation={5}
+            blurStrength={10}
+            containerClassName="mb-8"
+          >
+            Blog
+          </ScrollReveal>
+          <ul className="space-y-6 md:space-y-8">
+            {posts?.map((post: any) => (
+              <li key={post._id} className="bg-white rounded-lg p-6 md:p-8 hover:shadow-lg transition-shadow duration-300">
+                <h3 className="text-xl font-semibold hover:text-red-500 transition-colors duration-200 text-black">
+                  {post.title}
+                </h3>
+                <div className="flex items-center gap-4 text-sm text-gray-500 mt-2">
+                  <span className="font-medium uppercase leading-none">
+                    {post.publishedAt
+                      ? new Date(post.publishedAt).toLocaleDateString()
+                      : ''}
+                  </span>
+                </div>
+                {post.excerpt && <p className="mt-3 text-gray-600 leading-relaxed">{post.excerpt}</p>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <footer className="flex flex-col items-center gap-4 py-8 border-t border-gray-100 mt-16 md:mt-24 lg:mt-32">
         <p className="text-sm text-gray-500">

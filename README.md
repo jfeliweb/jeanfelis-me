@@ -1,26 +1,31 @@
 # jeanfelis.me
 
-A modern portfolio website built with Next.js, TypeScript, Tailwind CSS, and Sanity CMS. Features a one-page layout showcasing experience, projects, and blog posts with full accessibility and SEO optimization.
+A modern portfolio website built with Next.js, TypeScript, Tailwind CSS v4, and Sanity CMS. Features a one-page layout with interactive animations, showcasing experience, projects, and blog posts with full accessibility and SEO optimization.
 
 ## 🚀 Tech Stack
 
 - **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript (strict mode)
-- **Styling**: Tailwind CSS
+- **Styling**: Tailwind CSS v4
 - **CMS**: Sanity
+- **Animations**: GSAP + Motion (Framer Motion)
 - **Linting**: ESLint + jsx-a11y
 - **Formatting**: Prettier
 - **Deployment**: Netlify-ready
 
 ## 📁 Project Structure
 
-```
+```text
 ├── src/
 │   ├── app/
-│   │   ├── (studio)/studio/[[...index]]/  # Sanity Studio access
+│   │   ├── studio/[[...index]]/          # Sanity Studio access
 │   │   ├── globals.css                    # Tailwind + a11y styles
 │   │   ├── layout.tsx                     # SEO + a11y layout
 │   │   └── page.tsx                       # One-page portfolio layout
+│   ├── components/
+│   │   ├── BlurText.tsx                   # Animated text blur component
+│   │   ├── ScrollReveal.tsx               # GSAP scroll-triggered animations
+│   │   └── StaggeredMenu.tsx              # Interactive navigation menu
 │   └── sanity/
 │       ├── client.ts                      # Sanity client
 │       ├── config.ts                      # Sanity configuration
@@ -38,8 +43,8 @@ A modern portfolio website built with Next.js, TypeScript, Tailwind CSS, and San
 │   │   │   └── settings.ts               # Settings schema
 │   │   └── index.ts                       # Schema exports
 │   └── config.ts                          # Sanity configuration
+├── Design.json                            # Design system configuration
 ├── .env.local                             # Environment variables
-├── .prettierrc                            # Prettier configuration
 ├── eslint.config.mjs                      # ESLint + jsx-a11y config
 ├── tsconfig.json                          # Strict TypeScript config
 └── package.json                           # Dependencies & scripts
@@ -49,8 +54,7 @@ A modern portfolio website built with Next.js, TypeScript, Tailwind CSS, and San
 
 ```bash
 # Development
-npm run dev          # Start development server (localhost:3000)
-npm run studio       # Start Sanity Studio (localhost:3333)
+npm run dev          # Start development server (localhost:3000) + Sanity Studio (/studio)
 
 # Production
 npm run build        # Build for production
@@ -76,8 +80,8 @@ The `.env.local` file is already configured with:
 
 ```env
 NEXT_PUBLIC_SITE_URL=https://jeanfelis.me
-NEXT_PUBLIC_SANITY_PROJECT_ID=hasvdp01
-NEXT_PUBLIC_SANITY_DATASET=production
+NEXT_PUBLIC_SANITY_PROJECT_ID=####
+NEXT_PUBLIC_SANITY_DATASET=production/development
 NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
 # SANITY_READ_TOKEN=   # optional for previews/drafts
 ```
@@ -92,11 +96,9 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 
 ### 4. Access Sanity Studio
 
-```bash
-npm run studio
-```
+The Sanity Studio is integrated into the main application. After running `npm run dev`, you can access it at:
 
-Open [http://localhost:3333/studio](http://localhost:3333/studio) to manage content.
+Open [http://localhost:3000/studio](http://localhost:3000/studio) to manage content.
 
 ## 📝 Content Management
 
@@ -126,6 +128,7 @@ Open [http://localhost:3333/studio](http://localhost:3333/studio) to manage cont
 ## ✨ Key Features
 
 ### 🎯 Accessibility (a11y)
+
 - Semantic HTML structure with proper landmarks
 - Skip links for keyboard navigation
 - Focus management with visible focus indicators
@@ -133,6 +136,7 @@ Open [http://localhost:3333/studio](http://localhost:3333/studio) to manage cont
 - ESLint jsx-a11y plugin integration
 
 ### 🔍 SEO Optimization
+
 - Dynamic metadata with OpenGraph tags
 - Canonical URLs
 - Structured data ready
@@ -140,23 +144,34 @@ Open [http://localhost:3333/studio](http://localhost:3333/studio) to manage cont
 - Optimized images with Next.js Image component
 
 ### 🎨 Design & UX
+
 - One-page layout with smooth scrolling
-- Responsive design with Tailwind CSS
+- Responsive design with Tailwind CSS v4
 - Modern typography with Geist fonts
 - Clean, professional aesthetic
-- Dark mode support
+- Interactive animations and micro-interactions
+- Custom animated components
 
 ### ⚡ Performance
+
 - Static generation with ISR (Incremental Static Regeneration)
 - Optimized images and fonts
 - Efficient GROQ queries
 - Minimal bundle size
+- GSAP-powered animations
 
 ### 🛡️ Code Quality
+
 - Strict TypeScript configuration
 - ESLint with accessibility rules
 - Prettier code formatting
 - Comprehensive error handling
+
+### 🎭 Animation Components
+
+- **BlurText**: Animated text with blur effects and staggered reveals
+- **ScrollReveal**: GSAP-powered scroll-triggered animations
+- **StaggeredMenu**: Interactive navigation with smooth transitions
 
 ## 🌐 Deployment
 
@@ -164,7 +179,7 @@ Open [http://localhost:3333/studio](http://localhost:3333/studio) to manage cont
 
 1. Connect your repository to Netlify
 2. Set build command: `npm run build`
-3. Set publish directory: `.next`
+3. Set publish directory: `out` (for static export) or `.next` (for serverless)
 4. Add environment variables in Netlify dashboard
 5. Deploy!
 

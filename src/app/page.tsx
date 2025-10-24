@@ -71,7 +71,7 @@ export default async function HomePage() {
               alt={`${heroName} portrait`}
               width={320}
               height={320}
-              className="w-32 h-32 md:w-80 md:h-80 rounded-full ring-4 ring-gray-100"
+              className="w-64 h-64 md:w-80 md:h-80 rounded-full ring-4 ring-gray-100"
             />
           </div>
         )}

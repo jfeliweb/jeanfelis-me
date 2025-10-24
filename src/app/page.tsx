@@ -154,12 +154,12 @@ export default async function HomePage() {
                   {p.summary && <p className="text-gray-600 leading-relaxed line-clamp-2">{p.summary}</p>}
                   <div className="flex gap-4">
                     {p.url && (
-                      <a className="text-gray-700 hover:text-red-500 transition-colors duration-200 underline" href={p.url}>
+                      <a className="text-gray-700 hover:text-red-500 transition-colors duration-200 underline" href={p.url} target="_blank" rel="noopener noreferrer">
                         Live
                       </a>
                     )}
                     {p.repo && (
-                      <a className="text-gray-700 hover:text-red-500 transition-colors duration-200 underline" href={p.repo}>
+                      <a className="text-gray-700 hover:text-red-500 transition-colors duration-200 underline" href={p.repo} target="_blank" rel="noopener noreferrer">
                         Code
                       </a>
                     )}

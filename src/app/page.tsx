@@ -3,6 +3,7 @@ import { urlFor } from '../sanity/image';
 import { getHeroBundle, getExperience, getProjects, getPosts } from '../sanity/fetchers';
 import ScrollReveal from '../components/ScrollReveal';
 import BlurText from '../components/BlurText';
+import StaggeredMenu from '../components/StaggeredMenu';
 
 export const revalidate = 60;
 
@@ -19,8 +20,37 @@ export default async function HomePage() {
   const heroIntro = settings?.intro ?? '';
   const heroImage = person?.image;
 
+  // Menu configuration
+  const menuItems: Array<{ label: string; ariaLabel: string; link: string }> = [
+    { label: 'Home', ariaLabel: 'Go to top of page', link: '#main' },
+    { label: 'Experience', ariaLabel: 'View work experience', link: '#experience' },
+    { label: 'Projects', ariaLabel: 'View featured projects', link: '#projects' },
+    { label: 'Blog', ariaLabel: 'Read blog posts', link: '#blog' }
+  ];
+
+  // Social links from Sanity data
+  const socialItems: Array<{ label: string; link: string }> = person?.links?.map((link: any) => ({
+    label: link.label,
+    link: link.href
+  })) || [];
+
   return (
-    <main id="main" className="max-w-6xl mx-auto px-6 md:px-12 lg:px-16 py-16 md:py-24 lg:py-32">
+    <div className="relative min-h-screen bg-gray-50">
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials={true}
+        displayItemNumbering={true}
+        menuButtonColor="#374151"
+        openMenuButtonColor="#374151"
+        changeMenuColorOnOpen={false}
+        colors={['#f3f4f6', '#e5e7eb']}
+        accentColor="#dc2626"
+        isFixed={true}
+        logoUrl=""
+      />
+      <main id="main" className="max-w-6xl mx-auto px-6 md:px-12 lg:px-16 py-16 md:py-24 lg:py-32">
       {/* Hero */}
       <header aria-labelledby="hero-title" className="grid md:grid-cols-2 gap-8 items-center mb-16 md:mb-24 lg:mb-32">
         <div className="space-y-4">
@@ -41,23 +71,10 @@ export default async function HomePage() {
               alt={`${heroName} portrait`}
               width={320}
               height={320}
-              className="w-32 h-32 md:w-48 md:h-48 rounded-full ring-4 ring-gray-100"
+              className="w-32 h-32 md:w-80 md:h-80 rounded-full ring-4 ring-gray-100"
             />
           </div>
         )}
-        {person?.links?.length ? (
-          <nav aria-label="Social links" className="flex gap-4">
-            {person.links.map((l: any) => (
-              <a
-                key={l.href}
-                className="text-gray-700 hover:text-red-500 transition-colors duration-200 underline focus:outline-none focus:ring-2 focus:ring-red-500"
-                href={l.href}
-              >
-                {l.label}
-              </a>
-            ))}
-          </nav>
-        ) : null}
       </header>
 
       {/* Experience */}
@@ -185,6 +202,7 @@ export default async function HomePage() {
           © {new Date().getFullYear()} Jean Felisme
         </p>
       </footer>
-    </main>
+      </main>
+    </div>
   );
 }

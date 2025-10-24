@@ -210,3 +210,4 @@ Ensure these are set in your deployment platform:
 ---
 
 Built with ❤️ using Next.js, Sanity, and modern web standards.
+[![Netlify Status](https://api.netlify.com/api/v1/badges/15e8613b-766a-474f-9fc5-6685d838c162/deploy-status)](https://app.netlify.com/projects/jeanfelisme/deploys)

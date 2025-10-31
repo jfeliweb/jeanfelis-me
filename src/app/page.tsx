@@ -4,6 +4,7 @@ import { getHeroBundle, getExperience, getProjects, getPosts } from '../sanity/f
 import ScrollReveal from '../components/ScrollReveal';
 import BlurText from '../components/BlurText';
 import StaggeredMenu from '../components/StaggeredMenu';
+import ProjectsSection from '../components/ProjectsSection';
 
 export const revalidate = 60;
 
@@ -124,52 +125,7 @@ export default async function HomePage() {
       )}
 
       {/* Projects */}
-      {projects?.length > 0 && (
-        <section aria-labelledby="projects-title" id="projects" className="mb-16 md:mb-24 lg:mb-32">
-          <ScrollReveal
-            baseOpacity={0}
-            enableBlur={true}
-            baseRotation={5}
-            blurStrength={10}
-            containerClassName="mb-8"
-          >
-            Featured Projects
-          </ScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {projects?.map((p: any) => (
-              <article key={p._id} className="bg-white rounded-lg overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
-                <div className="aspect-video bg-gray-100 overflow-hidden">
-                  {p.image && (
-                    <Image
-                      src={urlFor(p.image).width(800).height(450).url()}
-                      alt={`${p.title} cover`}
-                      width={800}
-                      height={450}
-                      className="object-cover w-full h-full hover:opacity-90 transition-opacity"
-                    />
-                  )}
-                </div>
-                <div className="p-6 space-y-3">
-                  <h3 className="text-xl md:text-2xl font-bold text-black">{p.title}</h3>
-                  {p.summary && <p className="text-gray-600 leading-relaxed line-clamp-2">{p.summary}</p>}
-                  <div className="flex gap-4">
-                    {p.url && (
-                      <a className="text-gray-700 hover:text-red-500 transition-colors duration-200 underline" href={p.url} target="_blank" rel="noopener noreferrer">
-                        Live
-                      </a>
-                    )}
-                    {p.repo && (
-                      <a className="text-gray-700 hover:text-red-500 transition-colors duration-200 underline" href={p.repo} target="_blank" rel="noopener noreferrer">
-                        Code
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-      )}
+      <ProjectsSection projects={projects} />
 
       {/* Blog (uses Post type) */}
       {posts?.length > 0 && (

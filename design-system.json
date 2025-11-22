@@ -1,0 +1,399 @@
+{
+  "palette": {
+    "base": {
+      "white": "#FFFFFF",
+      "offWhite": "#F9FAFB",
+      "offWhiteAlt": "#F3F4F6"
+    },
+    "accent": {
+      "teal": "#4FE3C1",
+      "tealDark": "#14B8A6",
+      "pink": "#FF77E9",
+      "pinkDark": "#EC4899",
+      "purple": "#C69CFF",
+      "purpleDark": "#A855F7"
+    },
+    "neutral": {
+      "bgMuted": "#F1F5F9",
+      "borderSubtle": "#E5E7EB",
+      "borderStrong": "#CBD5F5",
+      "textPrimary": "#0F172A",
+      "textSecondary": "#4B5563",
+      "textMuted": "#6B7280",
+      "textOnDark": "#F9FAFB",
+      "iconMuted": "#9CA3AF"
+    },
+    "feedback": {
+      "success": "#22C55E",
+      "warning": "#F97316",
+      "error": "#EF4444"
+    },
+    "shadows": {
+      "cardShadow": "0 12px 30px rgba(15, 23, 42, 0.08)",
+      "cardShadowHover": "0 18px 40px rgba(15, 23, 42, 0.12)",
+      "buttonShadow": "0 8px 20px rgba(56, 189, 248, 0.25)",
+      "navShadow": "0 8px 24px rgba(15, 23, 42, 0.06)"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #4FE3C1 0%, #FF77E9 50%, #C69CFF 100%)",
+      "subtleBg": "linear-gradient(135deg, #F9FAFB 0%, #ECFEFF 50%, #FDF2FF 100%)",
+      "softUnderline": "linear-gradient(90deg, #4FE3C1 0%, #FF77E9 100%)"
+    }
+  },
+  "typography": {
+    "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif",
+    "scale": {
+      "h1": {
+        "fontSize": "2.25rem",
+        "lineHeight": "2.75rem",
+        "fontWeight": 600
+      },
+      "h2": {
+        "fontSize": "1.5rem",
+        "lineHeight": "2rem",
+        "fontWeight": 600
+      },
+      "h3": {
+        "fontSize": "1.25rem",
+        "lineHeight": "1.75rem",
+        "fontWeight": 500
+      },
+      "body": {
+        "fontSize": "1rem",
+        "lineHeight": "1.6",
+        "fontWeight": 400
+      },
+      "small": {
+        "fontSize": "0.875rem",
+        "lineHeight": "1.45",
+        "fontWeight": 400
+      },
+      "eyebrow": {
+        "fontSize": "0.75rem",
+        "letterSpacing": "0.16em",
+        "fontWeight": 600,
+        "textTransform": "uppercase"
+      }
+    },
+    "colors": {
+      "pageTitle": "#0F172A",
+      "sectionTitle": "#111827",
+      "bodyText": "#4B5563",
+      "mutedText": "#6B7280",
+      "eyebrowText": "#6B7280",
+      "link": "#14B8A6",
+      "linkHover": "#0D9488"
+    }
+  },
+  "layout": {
+    "page": {
+      "background": "@palette.base.offWhite",
+      "maxWidth": "64rem",
+      "horizontalPadding": "1.5rem",
+      "verticalPadding": "4rem",
+      "breakpoints": {
+        "sm": "640px",
+        "md": "768px",
+        "lg": "1024px",
+        "xl": "1280px"
+      }
+    },
+    "sections": {
+      "default": {
+        "paddingY": "3.5rem",
+        "gap": "1.5rem",
+        "background": "@palette.base.offWhite",
+        "borderBottom": "1px solid #E5E7EB"
+      },
+      "hero": {
+        "paddingY": "4rem",
+        "background": "@palette.gradients.subtleBg",
+        "shadow": "none"
+      },
+      "cardsSection": {
+        "paddingY": "3rem",
+        "background": "@palette.base.offWhiteAlt"
+      }
+    }
+  },
+  "elementStyling": {
+    "body": {
+      "background": "@palette.base.offWhite",
+      "color": "@palette.neutral.textPrimary"
+    },
+    "pageContainer": {
+      "selector": ".page-container",
+      "background": "@palette.base.offWhite",
+      "maxWidth": "64rem",
+      "margin": "0 auto",
+      "padding": "4rem 1.5rem"
+    },
+    "cards": {
+      "selector": ".card",
+      "background": "@palette.base.white",
+      "border": "1px solid @palette.neutral.borderSubtle",
+      "radius": "1.25rem",
+      "shadow": "@palette.shadows.cardShadow",
+      "padding": "1.5rem",
+      "contentColor": "@palette.neutral.textSecondary",
+      "headerColor": "@palette.neutral.textPrimary",
+      "iconContainer": {
+        "background": "rgba(79, 227, 193, 0.08)",
+        "borderRadius": "9999px",
+        "padding": "0.5rem",
+        "border": "none",
+        "shadow": "none"
+      },
+      "icons": {
+        "fill": "@palette.accent.tealDark",
+        "background": "transparent"
+      },
+      "hover": {
+        "background": "@palette.base.white",
+        "border": "1px solid @palette.accent.teal",
+        "shadow": "@palette.shadows.cardShadowHover",
+        "translateY": "-2px"
+      },
+      "active": {
+        "border": "1px solid @palette.accent.tealDark",
+        "shadow": "0 8px 20px rgba(15, 23, 42, 0.14)",
+        "translateY": "0"
+      },
+      "focus": {
+        "outline": "2px solid @palette.accent.teal",
+        "outlineOffset": "3px"
+      },
+      "disabled": {
+        "background": "#F3F4F6",
+        "border": "1px solid #E5E7EB",
+        "shadow": "none",
+        "contentColor": "#9CA3AF"
+      }
+    },
+    "buttons": {
+      "primary": {
+        "selector": ".btn-primary",
+        "background": "@palette.gradients.primary",
+        "textColor": "@palette.base.white",
+        "borderRadius": "9999px",
+        "border": "none",
+        "padding": "0.5rem 1.5rem",
+        "fontWeight": 500,
+        "shadow": "@palette.shadows.buttonShadow",
+        "iconColor": "@palette.base.white",
+        "hover": {
+          "background": "linear-gradient(135deg, #14B8A6 0%, #EC4899 50%, #A855F7 100%)",
+          "shadow": "0 12px 28px rgba(56, 189, 248, 0.35)",
+          "translateY": "-1px"
+        },
+        "active": {
+          "background": "linear-gradient(135deg, #0D9488 0%, #DB2777 50%, #7C3AED 100%)",
+          "shadow": "0 6px 14px rgba(15, 23, 42, 0.18)",
+          "translateY": "0"
+        },
+        "focus": {
+          "outline": "2px solid #A855F7",
+          "outlineOffset": "3px"
+        },
+        "disabled": {
+          "background": "#E5E7EB",
+          "textColor": "#9CA3AF",
+          "shadow": "none"
+        }
+      },
+      "secondary": {
+        "selector": ".btn-secondary",
+        "background": "@palette.base.white",
+        "textColor": "@palette.neutral.textPrimary",
+        "borderRadius": "9999px",
+        "border": "1px solid @palette.neutral.borderSubtle",
+        "padding": "0.5rem 1.5rem",
+        "fontWeight": 500,
+        "shadow": "none",
+        "hover": {
+          "background": "#F9FAFB",
+          "border": "1px solid @palette.accent.teal",
+          "textColor": "@palette.neutral.textPrimary"
+        },
+        "active": {
+          "background": "#F3F4F6",
+          "border": "1px solid @palette.accent.tealDark"
+        },
+        "focus": {
+          "outline": "2px solid @palette.accent.teal",
+          "outlineOffset": "3px"
+        },
+        "disabled": {
+          "background": "#F3F4F6",
+          "border": "1px solid #E5E7EB",
+          "textColor": "#9CA3AF"
+        }
+      },
+      "ghost": {
+        "selector": ".btn-ghost",
+        "background": "transparent",
+        "textColor": "@palette.accent.tealDark",
+        "border": "none",
+        "hover": {
+          "background": "rgba(20, 184, 166, 0.06)",
+          "textColor": "@palette.accent.tealDark"
+        },
+        "focus": {
+          "outline": "2px solid @palette.accent.teal",
+          "outlineOffset": "3px"
+        }
+      }
+    },
+    "navigation": {
+      "header": {
+        "selector": "header.site-header",
+        "background": "@palette.base.white",
+        "borderBottom": "1px solid rgba(226, 232, 240, 0.8)",
+        "shadow": "@palette.shadows.navShadow",
+        "height": "4rem",
+        "backdropFilter": "blur(16px)"
+      },
+      "brand": {
+        "selector": ".site-brand",
+        "textColor": "@palette.neutral.textPrimary",
+        "fontWeight": 600
+      },
+      "locationTag": {
+        "selector": ".site-location",
+        "background": "rgba(79, 227, 193, 0.12)",
+        "textColor": "@palette.accent.tealDark",
+        "borderRadius": "9999px",
+        "padding": "0.125rem 0.5rem"
+      },
+      "navLinks": {
+        "selector": ".nav-link",
+        "defaultColor": "@palette.neutral.textSecondary",
+        "hoverColor": "@palette.accent.tealDark",
+        "activeColor": "@palette.accent.tealDark",
+        "fontWeight": 500,
+        "hoverUnderline": "@palette.gradients.softUnderline",
+        "focusOutline": "2px solid @palette.accent.teal"
+      }
+    },
+    "hero": {
+      "selector": ".hero-section",
+      "background": "@palette.gradients.subtleBg",
+      "textColor": "@palette.neutral.textPrimary",
+      "eyebrowColor": "@palette.accent.tealDark",
+      "highlightUnderline": "@palette.gradients.softUnderline",
+      "shadow": "none"
+    },
+    "sections": {
+      "about": {
+        "selector": "#about",
+        "background": "@palette.base.offWhite",
+        "textColor": "@palette.neutral.textSecondary"
+      },
+      "founder": {
+        "selector": "#founder",
+        "background": "@palette.base.white",
+        "border": "1px solid @palette.neutral.borderSubtle",
+        "radius": "1.5rem",
+        "shadow": "@palette.shadows.cardShadow"
+      },
+      "work": {
+        "selector": "#work",
+        "background": "@palette.base.offWhiteAlt"
+      },
+      "links": {
+        "selector": "#links",
+        "background": "@palette.base.offWhite",
+        "borderTop": "1px solid #E5E7EB"
+      }
+    },
+    "links": {
+      "default": {
+        "selector": "a",
+        "color": "@palette.typography.colors.link",
+        "hoverColor": "@palette.typography.colors.linkHover",
+        "underline": "none",
+        "hoverUnderline": "underline"
+      },
+      "footerLinks": {
+        "selector": "footer a",
+        "color": "@palette.neutral.textMuted",
+        "hoverColor": "@palette.accent.tealDark"
+      }
+    },
+    "chips": {
+      "tag": {
+        "selector": ".tag-pill",
+        "background": "rgba(198, 156, 255, 0.08)",
+        "borderRadius": "9999px",
+        "textColor": "@palette.neutral.textSecondary",
+        "border": "1px solid rgba(198, 156, 255, 0.35)"
+      }
+    },
+    "footer": {
+      "selector": "footer.site-footer",
+      "background": "@palette.base.white",
+      "borderTop": "1px solid #E5E7EB",
+      "textColor": "@palette.neutral.textMuted"
+    }
+  },
+  "componentStates": {
+    "card": {
+      "default": {
+        "background": "@elementStyling.cards.background",
+        "border": "@elementStyling.cards.border",
+        "shadow": "@elementStyling.cards.shadow"
+      },
+      "hover": "@elementStyling.cards.hover",
+      "active": "@elementStyling.cards.active",
+      "focus": "@elementStyling.cards.focus",
+      "disabled": "@elementStyling.cards.disabled"
+    },
+    "primaryButton": {
+      "default": "@elementStyling.buttons.primary",
+      "hover": "@elementStyling.buttons.primary.hover",
+      "active": "@elementStyling.buttons.primary.active",
+      "focus": "@elementStyling.buttons.primary.focus",
+      "disabled": "@elementStyling.buttons.primary.disabled"
+    },
+    "secondaryButton": {
+      "default": "@elementStyling.buttons.secondary",
+      "hover": "@elementStyling.buttons.secondary.hover",
+      "active": "@elementStyling.buttons.secondary.active",
+      "focus": "@elementStyling.buttons.secondary.focus",
+      "disabled": "@elementStyling.buttons.secondary.disabled"
+    },
+    "navLink": {
+      "default": {
+        "color": "@elementStyling.navigation.navLinks.defaultColor"
+      },
+      "hover": {
+        "color": "@elementStyling.navigation.navLinks.hoverColor"
+      },
+      "active": {
+        "color": "@elementStyling.navigation.navLinks.activeColor"
+      },
+      "focus": {
+        "outline": "@elementStyling.navigation.navLinks.focusOutline"
+      }
+    }
+  },
+  "rules": {
+    "doNot": [
+      "DO NOT apply the primary gradient background to icons. Gradients are reserved for primary buttons and hero highlights.",
+      "DO NOT use button background colors for plain text. Text should always use neutral text colors for readability.",
+      "DO NOT place card shadows on inline text elements. Shadows are only for container elements such as cards, header, or hero wrappers.",
+      "DO NOT apply the subtle background gradient to small components like chips or icon containers; it is only for page or hero backgrounds.",
+      "DO NOT remove border radius from cards or buttons; rounded corners are part of the core visual language.",
+      "DO NOT use pink or purple accent colors for body text; they are for accents (gradients, tags, highlights) only.",
+      "DO NOT apply multiple different shadows to the same element. Each container should have at most one shadow style from the design system.",
+      "DO NOT give footer links the same high-contrast teal as primary CTAs. Footer links should remain muted until hovered."
+    ],
+    "usageNotes": [
+      "Gradients are primarily for the hero background, primary buttons, and subtle decorative underlines.",
+      "Cards should always have a solid white background with a subtle border and soft shadow.",
+      "Primary CTAs should use the gradient background to stand out; secondary CTAs should use white backgrounds with borders.",
+      "Navigation should remain visually light and slightly elevated with a subtle shadow and border.",
+      "Focus states must always show a clear outline using teal or purple accent colors to maintain accessibility."
+    ]
+  }
+}

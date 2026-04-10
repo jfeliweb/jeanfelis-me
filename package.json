@@ -8,8 +8,8 @@
     "build-stats": "cross-env ANALYZE=true npm run build",
     "build-prod": "run-s clean build",
     "clean": "rimraf .next .swc out",
-    "lint": "next lint",
-    "format": "next lint --fix && prettier '**/*.{json,yaml}' --write --ignore-path .gitignore",
+    "lint": "eslint .",
+    "format": "eslint . --fix && prettier '**/*.{json,yaml}' --write --ignore-path .gitignore",
     "check-types": "tsc --noEmit --pretty",
     "prepare": "husky install"
   },
@@ -22,6 +22,8 @@
     "styled-jsx-plugin-postcss": "^4.0.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^9.39.2",
     "@next/bundle-analyzer": "^16.1.0",
     "@types/node": "^20.11.10",
     "@types/react": "^19.0.0",

@@ -88,139 +88,51 @@ const ResumeIcon = () => (
 export default function Home() {
   return (
     <div className="flex min-h-[calc(100vh-5rem)] flex-col items-center justify-center p-6 md:min-h-[calc(100vh-5rem)] md:py-12">
-      <div className="mx-auto w-full max-w-4xl">
-        {/* Mobile: Stacked layout */}
-        <div className="flex flex-col items-center text-center md:hidden">
-          {/* Profile Photo */}
-          <div className="animate-fade-in-scale mb-6">
-            {/* Gradient ring wrapper */}
-            <div
-              className="rounded-full p-[4px] dark:shadow-[0_0_20px_rgba(20,20,20,0.4)]"
-              style={{
-                background:
-                  'conic-gradient(from 0deg, #4FE3C1 0deg, #FF77E9 120deg, #C69CFF 240deg, #4FE3C1 360deg)',
-              }}
-            >
-              <div className="relative size-[140px] overflow-hidden rounded-full bg-white">
-                <Image
-                  src="/assets/images/jean-felisme-profile-photo.jpeg"
-                  alt="Profile photo of Jean Felisme"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="140px"
-                />
+      <section id="hero">
+        <div className="mx-auto w-full max-w-4xl">
+          {/* Mobile: Stacked layout */}
+          <div className="flex flex-col items-center text-center md:hidden">
+            {/* Profile Photo */}
+            <div className="animate-fade-in-scale mb-6">
+              {/* Gradient ring wrapper */}
+              <div
+                className="rounded-full p-[4px] dark:shadow-[0_0_20px_rgba(20,20,20,0.4)]"
+                style={{
+                  background:
+                    'conic-gradient(from 0deg, #4FE3C1 0deg, #FF77E9 120deg, #C69CFF 240deg, #4FE3C1 360deg)',
+                }}
+              >
+                <div className="relative size-[140px] overflow-hidden rounded-full bg-white">
+                  <Image
+                    src="/assets/images/jean-felisme-profile-photo.jpeg"
+                    alt="Profile photo of Jean Felisme"
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="140px"
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Name */}
-          <h1 className="mb-2 text-3xl font-semibold text-textPrimary dark:text-[#F2F5F8]">
-            Jean Felisme
-          </h1>
-
-          {/* Tagline */}
-          <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-textMuted dark:text-[#8A94A0]">
-            Full-Stack Engineer & Creator
-          </h2>
-
-          {/* One-sentence summary */}
-          <p className="mb-6 text-sm leading-relaxed text-textSecondary dark:text-[#C2CBD4]">
-            Full-stack engineer, creator, and founder of jFeliWeb. Building AI
-            tools, indie web apps, and digital products from South Florida.
-          </p>
-
-          {/* Icon button row */}
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <IconButton
-              href="https://instagram.com/jfeliweb"
-              ariaLabel="Instagram"
-              icon={<InstagramIcon />}
-              external
-            />
-            <IconButton
-              href="https://twitter.com/jfeliweb"
-              ariaLabel="X (Twitter)"
-              icon={<TwitterIcon />}
-              external
-            />
-            <IconButton
-              href="https://github.com/jfeliweb"
-              ariaLabel="GitHub"
-              icon={<GitHubIcon />}
-              external
-            />
-            <IconButton
-              href="https://linkedin.com/in/jeanfelisme"
-              ariaLabel="LinkedIn"
-              icon={<LinkedInIcon />}
-              external
-            />
-            <IconButton
-              href="mailto:jean@jfeliweb.com"
-              ariaLabel="Email"
-              icon={<EmailIcon />}
-            />
-            <IconButton
-              href="/jean-felisme-resume.pdf"
-              ariaLabel="Resume"
-              icon={<ResumeIcon />}
-            />
-          </div>
-        </div>
-
-        {/* Desktop: Two-column layout */}
-        <div className="hidden items-center gap-12 md:flex">
-          {/* Left: Profile Photo */}
-          <div className="animate-fade-in-scale shrink-0">
-            {/* Gradient ring wrapper */}
-            <div
-              className="rounded-full p-[5px] dark:shadow-[0_0_20px_rgba(20,20,20,0.4)]"
-              style={{
-                background:
-                  'conic-gradient(from 0deg, #4FE3C1 0deg, #FF77E9 120deg, #C69CFF 240deg, #4FE3C1 360deg)',
-              }}
-            >
-              <div className="relative size-[180px] overflow-hidden rounded-full bg-white">
-                <Image
-                  src="/assets/images/jean-felisme-profile-photo.jpeg"
-                  alt="Profile photo of Jean Felisme"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="180px"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Content */}
-          <div className="flex-1 text-left">
             {/* Name */}
-            <h1 className="mb-2 text-4xl font-semibold text-textPrimary dark:text-[#F2F5F8]">
+            <h1 className="mb-2 text-3xl font-semibold text-textPrimary dark:text-[#F2F5F8]">
               Jean Felisme
             </h1>
 
             {/* Tagline */}
-            <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-textMuted dark:text-[#8A94A0]">
+            <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-textMuted dark:text-[#8A94A0]">
               Full-Stack Engineer & Creator
             </h2>
 
             {/* One-sentence summary */}
-            <p className="mb-6 text-base leading-relaxed text-textSecondary dark:text-[#C2CBD4]">
-              Full-stack engineer, creator, and founder of{' '}
-              <a
-                href="https://jfeliweb.com"
-                className="text-teal dark:text-tealDark"
-              >
-                jFeliWeb
-              </a>
-              . Building AI tools, indie web apps, and digital products from
-              South Florida.
+            <p className="mb-6 text-sm leading-relaxed text-textSecondary dark:text-[#C2CBD4]">
+              Full-stack engineer, creator, and founder of jFeliWeb. Building AI
+              tools, indie web apps, and digital products from South Florida.
             </p>
 
             {/* Icon button row */}
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-4">
               <IconButton
                 href="https://instagram.com/jfeliweb"
                 ariaLabel="Instagram"
@@ -254,12 +166,146 @@ export default function Home() {
                 href="/jean-felisme-resume.pdf"
                 ariaLabel="Resume"
                 icon={<ResumeIcon />}
-                external
               />
             </div>
           </div>
+
+          {/* Desktop: Two-column layout */}
+          <div className="hidden items-center gap-12 md:flex">
+            {/* Left: Profile Photo */}
+            <div className="animate-fade-in-scale shrink-0">
+              {/* Gradient ring wrapper */}
+              <div
+                className="rounded-full p-[5px] dark:shadow-[0_0_20px_rgba(20,20,20,0.4)]"
+                style={{
+                  background:
+                    'conic-gradient(from 0deg, #4FE3C1 0deg, #FF77E9 120deg, #C69CFF 240deg, #4FE3C1 360deg)',
+                }}
+              >
+                <div className="relative size-[180px] overflow-hidden rounded-full bg-white">
+                  <Image
+                    src="/assets/images/jean-felisme-profile-photo.jpeg"
+                    alt="Profile photo of Jean Felisme"
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="180px"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Content */}
+            <div className="flex-1 text-left">
+              {/* Name */}
+              <h1 className="mb-2 text-4xl font-semibold text-textPrimary dark:text-[#F2F5F8]">
+                Jean Felisme
+              </h1>
+
+              {/* Tagline */}
+              <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-textMuted dark:text-[#8A94A0]">
+                Full-Stack Engineer & Creator
+              </h2>
+
+              {/* One-sentence summary */}
+              <p className="mb-6 text-base leading-relaxed text-textSecondary dark:text-[#C2CBD4]">
+                Full-stack engineer, creator, and founder of{' '}
+                <a
+                  href="https://jfeliweb.com"
+                  className="text-teal dark:text-tealDark"
+                >
+                  jFeliWeb
+                </a>
+                . Building AI tools, indie web apps, and digital products from
+                South Florida.
+              </p>
+
+              {/* Icon button row */}
+              <div className="flex flex-wrap items-center gap-4">
+                <IconButton
+                  href="https://instagram.com/jfeliweb"
+                  ariaLabel="Instagram"
+                  icon={<InstagramIcon />}
+                  external
+                />
+                <IconButton
+                  href="https://twitter.com/jfeliweb"
+                  ariaLabel="X (Twitter)"
+                  icon={<TwitterIcon />}
+                  external
+                />
+                <IconButton
+                  href="https://github.com/jfeliweb"
+                  ariaLabel="GitHub"
+                  icon={<GitHubIcon />}
+                  external
+                />
+                <IconButton
+                  href="https://linkedin.com/in/jeanfelisme"
+                  ariaLabel="LinkedIn"
+                  icon={<LinkedInIcon />}
+                  external
+                />
+                <IconButton
+                  href="mailto:jean@jfeliweb.com"
+                  ariaLabel="Email"
+                  icon={<EmailIcon />}
+                />
+                <IconButton
+                  href="/jean-felisme-resume.pdf"
+                  ariaLabel="Resume"
+                  icon={<ResumeIcon />}
+                  external
+                />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section
+        id="about"
+        className="mt-16 w-full md:mt-24"
+        aria-labelledby="about-heading"
+      >
+        <div className="mx-auto w-full max-w-4xl">
+          <h2
+            id="about-heading"
+            className="mb-4 text-center text-2xl font-semibold text-textPrimary md:text-left md:text-3xl dark:text-[#F2F5F8]"
+          >
+            About
+          </h2>
+          <p className="text-center text-sm leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4]">
+            I should probably admit right up front that explaining what I do for
+            a living tends to confuse people just a little. I build websites,
+            fix the ones that get a little too dramatic, and every so often, I
+            teach a stubborn app how to behave. I have been at this for more
+            than fifteen years, which is long enough to remember when jQuery
+            felt magical and also long enough to have a few strong opinions
+            about it. Tech changes faster than a rumor at a church picnic, so I
+            learned early that staying sharp is not really optional.
+          </p>
+          <p className="text-center text-sm leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4]">
+            I have always been the kind of person who pokes around anything
+            broken just to see what is going on inside. That curiosity grew into
+            a full career before I even had time to talk myself out of it. These
+            days, I run my own creative studio called BizDots Media while also
+            juggling personal projects, building AI tools, and sharpening
+            whatever skills seem interesting that week. And yes, I talk to my
+            code like it is a living thing. Sometimes it listens. Sometimes it
+            does not, and that is when I stare at the screen as it owes me
+            money.
+          </p>
+          <p className="text-center text-sm leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4]">
+            Outside of coding, I am busy being a dad, coming up with new ideas
+            at inconvenient times, and chasing goals that seem to multiply when
+            I am not looking. I want to create things that genuinely help
+            people, things that feel good to use, and things that make life just
+            a bit easier. Call it ambition or call it stubbornness with decent
+            manners. I am still figuring out which one it is.
+          </p>
+        </div>
+      </section>
     </div>
   );
 }

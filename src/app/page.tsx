@@ -3,12 +3,12 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-import { ContactForm } from '../components/ContactForm';
-import { IconButton } from '../components/IconButton';
+import { ContactForm } from '@/components/ContactForm';
+import { IconButton } from '@/components/IconButton';
 import {
   ProjectModal,
   type ProjectModalProject,
-} from '../components/ProjectModal';
+} from '@/components/ProjectModal';
 
 // Icon SVGs (inline for simplicity)
 const InstagramIcon = () => (
@@ -93,12 +93,7 @@ const ResumeIcon = () => (
   </svg>
 );
 
-type ListedProject = ProjectModalProject & {
-  cardSummary: string;
-  cardTechTags: [string, string, string];
-};
-
-const PROJECTS: ListedProject[] = [
+const projects: ProjectModalProject[] = [
   {
     name: 'ReaderAI Labs',
     description:
@@ -107,18 +102,14 @@ const PROJECTS: ListedProject[] = [
       'Next.js 16',
       'TypeScript',
       'Drizzle ORM',
-      'PostgreSQL (Supabase)',
+      'PostgreSQL',
       'Stripe',
       'Better Auth',
       'Sanity CMS',
-      'Vitest',
-      'Playwright',
     ],
     liveUrl: 'https://readerlabs.app',
-    githubUrl: 'https://github.com/jfeliweb/project-read-ai',
+    githubUrls: ['https://github.com/jfeliweb/project-read-ai'],
     status: 'Live',
-    cardSummary: "AI-powered children's story app.",
-    cardTechTags: ['Next.js 16', 'TypeScript', 'Stripe'],
   },
   {
     name: 'Bashly',
@@ -128,36 +119,26 @@ const PROJECTS: ListedProject[] = [
       'Next.js 14',
       'TypeScript',
       'Drizzle ORM',
-      'PostgreSQL',
       'Stripe',
       'Spotify API',
-      'Better Auth',
       'Expo/React Native',
       'Turborepo',
-      'Tailwind CSS',
     ],
     liveUrl: 'https://bashly.app',
-    githubUrl: 'https://github.com/jfeliweb/bashly',
+    githubUrls: ['https://github.com/jfeliweb/bashly'],
     status: 'Live',
-    cardSummary:
-      'Full-stack event planning SaaS with a companion React Native mobile app.',
-    cardTechTags: ['Next.js 14', 'Expo/React Native', 'Stripe'],
   },
   {
     name: 'Job Application Tracker',
     description:
-      'Full-stack SaaS for tracking job applications with AI-generated cover letters. Built to demonstrate enterprise Java/Spring Boot engineering alongside a Next.js frontend.',
+      'Full-stack SaaS for tracking job applications with AI-generated cover letters. Java/Spring Boot backend with a Next.js frontend.',
     tech: [
       'Java 21',
       'Spring Boot 4',
-      'Spring Security (JWT)',
-      'Spring Data JPA',
-      'PostgreSQL (Neon)',
+      'Spring Security',
+      'PostgreSQL',
       'Next.js 15',
-      'TypeScript',
       'OpenAI API',
-      'Railway',
-      'Vercel',
     ],
     liveUrl: 'https://job-tracker-frontend-blush.vercel.app',
     githubUrls: [
@@ -165,37 +146,59 @@ const PROJECTS: ListedProject[] = [
       'https://github.com/jfeliweb/job-app-tracker-frontend',
     ],
     status: 'Live',
-    cardSummary:
-      'Full-stack SaaS for tracking job applications with AI-generated cover letters.',
-    cardTechTags: ['Java 21', 'Spring Boot 4', 'Next.js 15'],
   },
   {
     name: 'Orion Miami',
     description:
-      'South Florida Web Studio hired me to work on Orion Miami website to implement a few features. I spent the majority of the time working on a custom property portfolio feature on their WordPress website. This feature allowed the user to filter through the property by clicking on a map and/or by a single tenant or multi-tenant.',
-    tech: ['PHP', 'WordPress', 'JavaScript', 'Advance Custom Fields'],
+      'Website for a Miami-based client. Custom design and development using modern web technologies.',
+    tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     liveUrl: 'https://orionmiami.com',
-    githubUrl: 'private',
+    githubUrls: [],
     status: 'Live',
-    cardSummary:
-      'South Florida Web Studio hired me to work on Orion Miami website to implement a few features.',
-    cardTechTags: ['PHP', 'WordPress', 'JavaScript'],
   },
 ];
 
+const navLinkClass =
+  'text-sm font-medium text-textSecondary transition-colors hover:text-teal dark:hover:text-tealDark';
+
 export default function Home() {
-  const [openProject, setOpenProject] = useState<ListedProject | null>(null);
+  const [openProject, setOpenProject] = useState<ProjectModalProject | null>(
+    null,
+  );
 
   return (
-    <>
-      <div className="flex min-h-[calc(100vh-5rem)] flex-col items-center justify-center p-6 md:min-h-[calc(100vh-5rem)] md:py-12">
-        <section id="hero">
+    <div className="min-h-screen w-full">
+      <nav
+        className="fixed top-0 z-50 h-14 w-full border-b border-gray-200 bg-white/80 backdrop-blur-md dark:border-white/10 dark:bg-[#0D1117]/80"
+        aria-label="Primary"
+      >
+        <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
+          <a
+            href="#top"
+            className="text-sm font-semibold text-textPrimary dark:text-[#F2F5F8]"
+          >
+            Jean Felisme
+          </a>
+          <div className="flex items-center gap-6">
+            <a href="#about" className={navLinkClass}>
+              About
+            </a>
+            <a href="#projects" className={navLinkClass}>
+              Projects
+            </a>
+            <a href="#contact" className={navLinkClass}>
+              Contact
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div className="flex w-full flex-col items-center px-6 pb-12 pt-14">
+        <section id="top">
           <div className="mx-auto w-full max-w-4xl">
             {/* Mobile: Stacked layout */}
             <div className="flex flex-col items-center text-center md:hidden">
-              {/* Profile Photo */}
               <div className="animate-fade-in-scale mb-6">
-                {/* Gradient ring wrapper */}
                 <div
                   className="rounded-full p-[4px] dark:shadow-[0_0_20px_rgba(20,20,20,0.4)]"
                   style={{
@@ -216,24 +219,19 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Name */}
               <h1 className="mb-2 text-3xl font-semibold text-textPrimary dark:text-[#F2F5F8]">
                 Jean Felisme
               </h1>
 
-              {/* Tagline */}
               <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-textMuted dark:text-[#8A94A0]">
                 Full-Stack Engineer & Creator
               </h2>
 
-              {/* One-sentence summary */}
               <p className="mb-6 text-sm leading-relaxed text-textSecondary dark:text-[#C2CBD4]">
-                Full-stack engineer, creator, and founder of jFeliWeb. Building
-                AI tools, indie web apps, and digital products from South
-                Florida.
+                Building AI tools, indie web apps, and digital products from
+                South Florida.
               </p>
 
-              {/* Icon button row */}
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <IconButton
                   href="https://instagram.com/jfeliweb"
@@ -260,7 +258,7 @@ export default function Home() {
                   external
                 />
                 <IconButton
-                  href="mailto:jean@jfeliweb.com"
+                  href="mailto:felismej@gmail.com"
                   ariaLabel="Email"
                   icon={<EmailIcon />}
                 />
@@ -272,11 +270,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Desktop: Two-column layout */}
             <div className="hidden items-center gap-12 md:flex">
-              {/* Left: Profile Photo */}
               <div className="animate-fade-in-scale shrink-0">
-                {/* Gradient ring wrapper */}
                 <div
                   className="rounded-full p-[5px] dark:shadow-[0_0_20px_rgba(20,20,20,0.4)]"
                   style={{
@@ -297,32 +292,20 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Right: Content */}
               <div className="flex-1 text-left">
-                {/* Name */}
                 <h1 className="mb-2 text-4xl font-semibold text-textPrimary dark:text-[#F2F5F8]">
                   Jean Felisme
                 </h1>
 
-                {/* Tagline */}
                 <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-textMuted dark:text-[#8A94A0]">
                   Full-Stack Engineer & Creator
                 </h2>
 
-                {/* One-sentence summary */}
                 <p className="mb-6 text-base leading-relaxed text-textSecondary dark:text-[#C2CBD4]">
-                  Full-stack engineer, creator, and founder of{' '}
-                  <a
-                    href="https://jfeliweb.com"
-                    className="text-teal dark:text-tealDark"
-                  >
-                    jFeliWeb
-                  </a>
-                  . Building AI tools, indie web apps, and digital products from
+                  Building AI tools, indie web apps, and digital products from
                   South Florida.
                 </p>
 
-                {/* Icon button row */}
                 <div className="flex flex-wrap items-center gap-4">
                   <IconButton
                     href="https://instagram.com/jfeliweb"
@@ -349,7 +332,7 @@ export default function Home() {
                     external
                   />
                   <IconButton
-                    href="mailto:jean@jfeliweb.com"
+                    href="mailto:felismej@gmail.com"
                     ariaLabel="Email"
                     icon={<EmailIcon />}
                   />
@@ -367,52 +350,31 @@ export default function Home() {
 
         <section
           id="about"
-          className="mt-16 w-full md:mt-24"
+          className="scroll-mt-20 py-16"
           aria-labelledby="about-heading"
         >
           <div className="mx-auto w-full max-w-4xl">
             <h2
               id="about-heading"
-              className="mb-4 text-center text-2xl font-semibold text-textPrimary md:text-left md:text-3xl dark:text-[#F2F5F8]"
+              className="mb-4 text-center text-xs font-semibold uppercase tracking-wider text-textMuted md:text-left dark:text-[#8A94A0]"
             >
               About
             </h2>
             <p className="text-center text-sm leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4]">
-              I should probably admit right up front that explaining what I do
-              for a living tends to confuse people just a little. I build
-              websites, fix the ones that get a little too dramatic, and every
-              so often, I teach a stubborn app how to behave. I have been at
-              this for more than fifteen years, which is long enough to remember
-              when jQuery felt magical and also long enough to have a few strong
-              opinions about it. Tech changes faster than a rumor at a church
-              picnic, so I learned early that staying sharp is not really
-              optional.
-            </p>
-            <p className="text-center text-sm leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4]">
-              I have always been the kind of person who pokes around anything
-              broken just to see what is going on inside. That curiosity grew
-              into a full career before I even had time to talk myself out of
-              it. These days, I run my own creative studio called BizDots Media
-              while also juggling personal projects, building AI tools, and
-              sharpening whatever skills seem interesting that week. And yes, I
-              talk to my code like it is a living thing. Sometimes it listens.
-              Sometimes it does not, and that is when I stare at the screen as
-              it owes me money.
-            </p>
-            <p className="text-center text-sm leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4]">
-              Outside of coding, I am busy being a dad, coming up with new ideas
-              at inconvenient times, and chasing goals that seem to multiply
-              when I am not looking. I want to create things that genuinely help
-              people, things that feel good to use, and things that make life
-              just a bit easier. Call it ambition or call it stubbornness with
-              decent manners. I am still figuring out which one it is.
+              I&apos;m a full-stack engineer based in South Florida with 15+
+              years building web platforms, SaaS products, and AI-integrated
+              applications. I&apos;ve worked across startups, agencies, and
+              enterprise teams — shipping everything from consumer apps to
+              internal tools for Fortune 500 clients. Outside of client work, I
+              build my own products. Currently working on ReaderAI Labs and
+              Bashly, and starting FIU&apos;s MSIS AI program this fall.
             </p>
           </div>
         </section>
 
         <section
           id="projects"
-          className="mt-16 w-full md:mt-24"
+          className="scroll-mt-20 w-full"
           aria-labelledby="projects-heading"
         >
           <div className="mx-auto w-full max-w-4xl">
@@ -423,34 +385,34 @@ export default function Home() {
               Projects
             </h2>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {PROJECTS.map((project) => (
+              {projects.map((project) => (
                 <button
                   key={project.name}
                   type="button"
                   onClick={() => setOpenProject(project)}
-                  className="group flex w-full flex-col rounded-xl border border-borderSubtle bg-white p-5 text-left shadow-card transition-all duration-200 hover:-translate-y-1 hover:shadow-cardHover focus:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 dark:border-white/10 dark:bg-white/5 dark:focus-visible:ring-tealDark dark:focus-visible:ring-offset-[#0B0E12]"
-                  aria-label={`View project: ${project.name}`}
+                  className="flex w-full cursor-pointer flex-col rounded-xl border border-gray-200 bg-white p-6 text-left transition-transform hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2 dark:border-white/10 dark:bg-white/5 dark:focus-visible:ring-tealDark dark:focus-visible:ring-offset-[#0B0E12]"
+                  aria-label={`View details for ${project.name}`}
                 >
-                  <h3 className="text-lg font-semibold text-textPrimary dark:text-[#F2F5F8]">
+                  <h3 className="font-bold text-textPrimary dark:text-[#F2F5F8]">
                     {project.name}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-textSecondary dark:text-[#C2CBD4]">
-                    {project.cardSummary}
+                  <p className="mt-2 line-clamp-1 text-sm text-textSecondary dark:text-[#C2CBD4]">
+                    {project.description}
                   </p>
                   <ul
                     className="mt-4 flex flex-wrap gap-2"
-                    aria-label={`Key technologies for ${project.name}`}
+                    aria-label={`Technologies for ${project.name}`}
                   >
-                    {project.cardTechTags.map((tag) => (
+                    {project.tech.slice(0, 3).map((tag) => (
                       <li key={tag}>
-                        <span className="inline-block rounded-full border border-borderSubtle bg-offWhite px-2.5 py-0.5 text-xs font-medium text-textSecondary dark:border-white/10 dark:bg-white/5 dark:text-[#C2CBD4]">
+                        <span className="inline-block rounded-full bg-teal/10 px-2 py-1 text-xs text-teal dark:bg-tealDark/15 dark:text-tealDark">
                           {tag}
                         </span>
                       </li>
                     ))}
                   </ul>
-                  <span className="mt-5 inline-flex w-fit items-center rounded-full bg-teal px-4 py-2 text-sm font-semibold text-textPrimary transition-opacity group-hover:opacity-90 dark:bg-tealDark dark:text-white">
-                    View Project
+                  <span className="mt-4 text-sm font-medium text-teal dark:text-tealDark">
+                    View Details
                   </span>
                 </button>
               ))}
@@ -458,31 +420,57 @@ export default function Home() {
           </div>
         </section>
 
+        <ProjectModal
+          isOpen={openProject !== null}
+          onCloseAction={() => setOpenProject(null)}
+          project={openProject ?? projects[0]!}
+        />
+
         <section
           id="contact"
-          className="mt-16 w-full md:mt-24"
+          className="scroll-mt-20 mt-16 w-full md:mt-24"
           aria-labelledby="contact-heading"
         >
           <div className="mx-auto w-full max-w-4xl">
             <h2
               id="contact-heading"
-              className="mb-6 text-center text-2xl font-semibold text-textPrimary md:text-left md:text-3xl dark:text-[#F2F5F8]"
+              className="mb-2 text-center text-2xl font-semibold text-textPrimary md:text-left md:text-3xl dark:text-[#F2F5F8]"
             >
-              Contact
+              Get in Touch
             </h2>
+            <p className="mb-6 text-center text-sm text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4]">
+              Have a project in mind or just want to connect? Send me a message.
+            </p>
             <div className="flex justify-center md:justify-start">
               <ContactForm />
             </div>
           </div>
         </section>
 
-        {openProject ? (
-          <ProjectModal
-            isOpen
-            onCloseAction={() => setOpenProject(null)}
-            project={openProject}
-          />
-        ) : null}
+        <footer className="mx-auto mt-16 w-full max-w-4xl border-t border-gray-200 py-8 dark:border-white/10">
+          <p className="text-center text-sm text-textMuted dark:text-[#8A94A0]">
+            © 2026 Jean Felisme
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+            <IconButton
+              href="https://github.com/jfeliweb"
+              ariaLabel="GitHub"
+              icon={<GitHubIcon />}
+              external
+            />
+            <IconButton
+              href="https://linkedin.com/in/jeanfelisme"
+              ariaLabel="LinkedIn"
+              icon={<LinkedInIcon />}
+              external
+            />
+            <IconButton
+              href="mailto:felismej@gmail.com"
+              ariaLabel="Email"
+              icon={<EmailIcon />}
+            />
+          </div>
+        </footer>
       </div>
 
       <form
@@ -496,6 +484,6 @@ export default function Home() {
         <textarea name="message" />
         <input type="text" name="website" />
       </form>
-    </>
+    </div>
   );
 }

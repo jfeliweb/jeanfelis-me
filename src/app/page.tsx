@@ -159,7 +159,9 @@ const projects: ProjectModalProject[] = [
 ];
 
 const navLinkClass =
-  'text-sm font-medium text-textSecondary transition-colors hover:text-teal dark:hover:text-tealDark';
+  'text-sm font-medium text-textSecondary transition-colors hover:text-teal dark:text-[#C2CBD4] dark:hover:text-tealDark';
+
+const sectionBlock = 'scroll-mt-20 py-20';
 
 export default function Home() {
   const [openProject, setOpenProject] = useState<ProjectModalProject | null>(
@@ -193,8 +195,8 @@ export default function Home() {
         </div>
       </nav>
 
-      <div className="flex w-full flex-col items-center px-6 pb-4 pt-14">
-        <section id="top" className="scroll-mt-20 py-16">
+      <div className="flex w-full flex-col items-center px-6 pb-16 pt-14 md:pt-16">
+        <section id="top" className={sectionBlock}>
           <div className="mx-auto w-full max-w-4xl">
             {/* Mobile: Stacked layout */}
             <div className="flex flex-col items-center text-center md:hidden">
@@ -298,12 +300,12 @@ export default function Home() {
                 </h1>
 
                 <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-textMuted dark:text-[#8A94A0]">
-                  Full-Stack Engineer & Creator
+                  Senior Full-Stack Engineer
                 </h2>
 
                 <p className="mb-6 text-base leading-relaxed text-textSecondary dark:text-[#C2CBD4]">
-                  Building AI tools, indie web apps, and digital products from
-                  South Florida.
+                  Building Web Platforms, SaaS Products, and AI-integrated
+                  Applications from South Florida.
                 </p>
 
                 <div className="flex flex-wrap items-center gap-4">
@@ -337,7 +339,7 @@ export default function Home() {
                     icon={<EmailIcon />}
                   />
                   <IconButton
-                    href="/jean-felisme-resume.pdf"
+                    href="/Jean_Felisme_Resume.pdf"
                     ariaLabel="Resume"
                     icon={<ResumeIcon />}
                     external
@@ -350,7 +352,7 @@ export default function Home() {
 
         <section
           id="about"
-          className="scroll-mt-20 py-16"
+          className={`${sectionBlock} w-full`}
           aria-labelledby="about-heading"
         >
           <div className="mx-auto w-full max-w-4xl">
@@ -360,42 +362,45 @@ export default function Home() {
             >
               About
             </h2>
-            <p className="text-center text-base leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4] py-1">
-              I should probably admit right up front that explaining what I do
-              for a living tends to confuse people just a little. I build
-              websites, fix the ones that get a little too dramatic, and every
-              so often, I teach a stubborn app how to behave. I have been at
-              this for more than fifteen years, which is long enough to remember
-              when jQuery felt magical and also long enough to have a few strong
-              opinions about it. Tech changes faster than a rumor at a church
-              picnic, so I learned early that staying sharp is not really
-              optional.
-            </p>
-            <p className="text-center text-base leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4] py-1">
-              I have always been the kind of person who pokes around anything
-              broken just to see what is going on inside. That curiosity grew
-              into a full career before I even had time to talk myself out of
-              it. These days, I run my own creative studio called BizDots Media
-              while also juggling personal projects, building AI tools, and
-              sharpening whatever skills seem interesting that week. And yes, I
-              talk to my code like it is a living thing. Sometimes it listens.
-              Sometimes it does not, and that is when I stare at the screen as
-              it owes me money.
-            </p>
-            <p className="text-center text-base leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4] py-1">
-              Outside of coding, I am busy being a dad, coming up with new ideas
-              at inconvenient times, and chasing goals that seem to multiply
-              when I am not looking. I want to create things that genuinely help
-              people, things that feel good to use, and things that make life
-              just a bit easier. Call it ambition or call it stubbornness with
-              decent manners. I am still figuring out which one it is.
-            </p>
+            <div className="space-y-4 text-center text-lg font-medium leading-relaxed text-textSecondary md:text-left dark:text-[#C2CBD4]">
+              <p>
+                I should probably admit right up front that explaining what I do
+                for a living tends to confuse people just a little. I build
+                websites, fix the ones that get a little too dramatic, and every
+                so often, I teach a stubborn app how to behave. I have been at
+                this for more than fifteen years, which is long enough to
+                remember when jQuery felt magical and also long enough to have a
+                few strong opinions about it. Tech changes faster than a rumor
+                at a church picnic, so I learned early that staying sharp is not
+                really optional.
+              </p>
+              <p>
+                I have always been the kind of person who pokes around anything
+                broken just to see what is going on inside. That curiosity grew
+                into a full career before I even had time to talk myself out of
+                it. These days, I run my own creative studio called BizDots
+                Media while also juggling personal projects, building AI tools,
+                and sharpening whatever skills seem interesting that week. And
+                yes, I talk to my code like it is a living thing. Sometimes it
+                listens. Sometimes it does not, and that is when I stare at the
+                screen as it owes me money.
+              </p>
+              <p>
+                Outside of coding, I am busy being a dad, coming up with new
+                ideas at inconvenient times, and chasing goals that seem to
+                multiply when I am not looking. I want to create things that
+                genuinely help people, things that feel good to use, and things
+                that make life just a bit easier. Call it ambition or call it
+                stubbornness with decent manners. I am still figuring out which
+                one it is.
+              </p>
+            </div>
           </div>
         </section>
 
         <section
           id="projects"
-          className="scroll-mt-20 w-full"
+          className={`${sectionBlock} w-full`}
           aria-labelledby="projects-heading"
         >
           <div className="mx-auto w-full max-w-4xl">
@@ -449,7 +454,7 @@ export default function Home() {
 
         <section
           id="contact"
-          className="scroll-mt-20 mt-16 w-full md:mt-24"
+          className={`${sectionBlock} w-full`}
           aria-labelledby="contact-heading"
         >
           <div className="mx-auto w-full max-w-4xl">
@@ -472,7 +477,7 @@ export default function Home() {
               >
                 <p
                   id="contact-social-heading"
-                  className="mb-4 text-center text-xl font-semibold tracking-wider leading-relaxed text-textSecondary md:text-left dark:text-[#C2CBD4]"
+                  className="mb-4 text-center text-sm font-semibold uppercase tracking-wider text-textMuted md:text-left dark:text-[#8A94A0]"
                 >
                   Or connect with me on social media
                 </p>
@@ -495,24 +500,12 @@ export default function Home() {
           </div>
         </section>
 
-        <footer className="mx-auto mt-16 w-full max-w-4xl border-t border-gray-200 py-4 dark:border-white/10">
+        <footer className="mx-auto w-full max-w-4xl border-t border-gray-200 py-16 dark:border-white/10">
           <p className="text-center text-sm text-textMuted dark:text-[#8A94A0]">
             © 2026 Jean Felisme All rights reserved.
           </p>
         </footer>
       </div>
-
-      <form
-        name="contact"
-        data-netlify="true"
-        {...{ 'netlify-honeypot': 'website' }}
-        hidden
-      >
-        <input type="text" name="name" />
-        <input type="email" name="email" />
-        <textarea name="message" />
-        <input type="text" name="website" />
-      </form>
     </div>
   );
 }

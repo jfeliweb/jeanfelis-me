@@ -41,6 +41,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <PremiumCinematicBackground />
 
         <main className="flex flex-1 flex-col">{children}</main>
+
+        <form
+          name="contact"
+          data-netlify="true"
+          {...{ 'netlify-honeypot': 'website' }}
+          hidden
+        >
+          <input type="text" name="name" />
+          <input type="email" name="email" />
+          <textarea name="message" />
+          <input type="text" name="website" />
+        </form>
       </body>
     </html>
   );

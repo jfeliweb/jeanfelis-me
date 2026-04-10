@@ -150,8 +150,8 @@ const projects: ProjectModalProject[] = [
   {
     name: 'Orion Miami',
     description:
-      'Website for a Miami-based client. Custom design and development using modern web technologies.',
-    tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+      'South Florida Web Studio hired me to work on the Orion Miami website to implement a few features. I spent the majority of the time working on a custom property portfolio feature on their WordPress website. This feature allowed the user to filter through the property by clicking on a map and/or by a single tenant or multi-tenant.',
+    tech: ['PHP', 'WordPress', 'JavaScript', 'Advanced Custom Fields (ACF)'],
     liveUrl: 'https://orionmiami.com',
     githubUrls: [],
     status: 'Live',
@@ -193,8 +193,8 @@ export default function Home() {
         </div>
       </nav>
 
-      <div className="flex w-full flex-col items-center px-6 pb-12 pt-14">
-        <section id="top">
+      <div className="flex w-full flex-col items-center px-6 pb-4 pt-14">
+        <section id="top" className="scroll-mt-20 py-16">
           <div className="mx-auto w-full max-w-4xl">
             {/* Mobile: Stacked layout */}
             <div className="flex flex-col items-center text-center md:hidden">
@@ -208,7 +208,7 @@ export default function Home() {
                 >
                   <div className="relative size-[140px] overflow-hidden rounded-full bg-white">
                     <Image
-                      src="/assets/images/jean-felisme-profile-photo.jpeg"
+                      src="/assets/images/Jean-Felisme-profile-photo.jpg"
                       alt="Profile photo of Jean Felisme"
                       fill
                       className="object-cover"
@@ -281,7 +281,7 @@ export default function Home() {
                 >
                   <div className="relative size-[180px] overflow-hidden rounded-full bg-white">
                     <Image
-                      src="/assets/images/jean-felisme-profile-photo.jpeg"
+                      src="/assets/images/Jean-Felisme-profile-photo.jpg"
                       alt="Profile photo of Jean Felisme"
                       fill
                       className="object-cover"
@@ -356,18 +356,39 @@ export default function Home() {
           <div className="mx-auto w-full max-w-4xl">
             <h2
               id="about-heading"
-              className="mb-4 text-center text-xs font-semibold uppercase tracking-wider text-textMuted md:text-left dark:text-[#8A94A0]"
+              className="mb-8 text-center text-2xl font-semibold text-textPrimary md:text-left md:text-3xl dark:text-[#F2F5F8]"
             >
               About
             </h2>
-            <p className="text-center text-sm leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4]">
-              I&apos;m a full-stack engineer based in South Florida with 15+
-              years building web platforms, SaaS products, and AI-integrated
-              applications. I&apos;ve worked across startups, agencies, and
-              enterprise teams — shipping everything from consumer apps to
-              internal tools for Fortune 500 clients. Outside of client work, I
-              build my own products. Currently working on ReaderAI Labs and
-              Bashly, and starting FIU&apos;s MSIS AI program this fall.
+            <p className="text-center text-base leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4] py-1">
+              I should probably admit right up front that explaining what I do
+              for a living tends to confuse people just a little. I build
+              websites, fix the ones that get a little too dramatic, and every
+              so often, I teach a stubborn app how to behave. I have been at
+              this for more than fifteen years, which is long enough to remember
+              when jQuery felt magical and also long enough to have a few strong
+              opinions about it. Tech changes faster than a rumor at a church
+              picnic, so I learned early that staying sharp is not really
+              optional.
+            </p>
+            <p className="text-center text-base leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4] py-1">
+              I have always been the kind of person who pokes around anything
+              broken just to see what is going on inside. That curiosity grew
+              into a full career before I even had time to talk myself out of
+              it. These days, I run my own creative studio called BizDots Media
+              while also juggling personal projects, building AI tools, and
+              sharpening whatever skills seem interesting that week. And yes, I
+              talk to my code like it is a living thing. Sometimes it listens.
+              Sometimes it does not, and that is when I stare at the screen as
+              it owes me money.
+            </p>
+            <p className="text-center text-base leading-relaxed text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4] py-1">
+              Outside of coding, I am busy being a dad, coming up with new ideas
+              at inconvenient times, and chasing goals that seem to multiply
+              when I am not looking. I want to create things that genuinely help
+              people, things that feel good to use, and things that make life
+              just a bit easier. Call it ambition or call it stubbornness with
+              decent manners. I am still figuring out which one it is.
             </p>
           </div>
         </section>
@@ -441,35 +462,43 @@ export default function Home() {
             <p className="mb-6 text-center text-sm text-textSecondary md:text-left md:text-base dark:text-[#C2CBD4]">
               Have a project in mind or just want to connect? Send me a message.
             </p>
-            <div className="flex justify-center md:justify-start">
-              <ContactForm />
+            <div className="flex w-full flex-col gap-10 md:flex-row md:items-start md:justify-between md:gap-8 lg:gap-12">
+              <div className="flex w-full justify-center md:justify-start">
+                <ContactForm />
+              </div>
+              <aside
+                className="flex flex-col items-center md:shrink-0 md:items-center md:align-middle md:pt-10"
+                aria-labelledby="contact-social-heading"
+              >
+                <p
+                  id="contact-social-heading"
+                  className="mb-4 text-center text-xl font-semibold tracking-wider leading-relaxed text-textSecondary md:text-left dark:text-[#C2CBD4]"
+                >
+                  Or connect with me on social media
+                </p>
+                <div className="flex items-center justify-center gap-4 md:justify-start">
+                  <IconButton
+                    href="https://twitter.com/jfeliweb"
+                    ariaLabel="X (Twitter)"
+                    icon={<TwitterIcon />}
+                    external
+                  />
+                  <IconButton
+                    href="https://linkedin.com/in/jeanfelisme"
+                    ariaLabel="LinkedIn"
+                    icon={<LinkedInIcon />}
+                    external
+                  />
+                </div>
+              </aside>
             </div>
           </div>
         </section>
 
-        <footer className="mx-auto mt-16 w-full max-w-4xl border-t border-gray-200 py-8 dark:border-white/10">
+        <footer className="mx-auto mt-16 w-full max-w-4xl border-t border-gray-200 py-4 dark:border-white/10">
           <p className="text-center text-sm text-textMuted dark:text-[#8A94A0]">
-            © 2026 Jean Felisme
+            © 2026 Jean Felisme All rights reserved.
           </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-            <IconButton
-              href="https://github.com/jfeliweb"
-              ariaLabel="GitHub"
-              icon={<GitHubIcon />}
-              external
-            />
-            <IconButton
-              href="https://linkedin.com/in/jeanfelisme"
-              ariaLabel="LinkedIn"
-              icon={<LinkedInIcon />}
-              external
-            />
-            <IconButton
-              href="mailto:felismej@gmail.com"
-              ariaLabel="Email"
-              icon={<EmailIcon />}
-            />
-          </div>
         </footer>
       </div>
 

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netlify Forms — contact</title>
+  </head>
+  <body>
+    <!-- Deploy-time Netlify Forms detection only; submissions POST to this path from the app. -->
+    <form
+      name="contact"
+      data-netlify="true"
+      netlify-honeypot="website"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="name" type="text" />
+      <input name="email" type="email" />
+      <textarea name="message"></textarea>
+      <input name="website" type="text" />
+    </form>
+  </body>
+</html>

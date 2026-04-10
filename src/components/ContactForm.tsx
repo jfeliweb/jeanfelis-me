@@ -48,7 +48,7 @@ export function ContactForm() {
     }
     const body = params.toString();
 
-    fetch('/', {
+    fetch('/__forms.html', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body,
@@ -77,8 +77,6 @@ export function ContactForm() {
   return (
     <form
       name="contact"
-      data-netlify="true"
-      {...{ 'netlify-honeypot': 'website' }}
       onSubmit={handleSubmit}
       className="relative w-full max-w-xl"
     >
